@@ -1,92 +1,305 @@
-# webfleetconnectjs
+# webfleetconnect
 
+![Webfleet logo](https://login.webfleet.com/auth/resources/7k8j7/login/product_webfleet/img/logo.svg)
 
+#
 
-## Getting started
+Library to consume WEBFLEET.connect API.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.com/JesusPimentel/webfleetconnectjs.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.com/JesusPimentel/webfleetconnectjs/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+The WEBFLEET.connect API connects software appli­ca­tions with the Webfleet fleet management solution. Via WEBFLEET.connect you can enhance the value of all types of business solutions, including routing and scheduling optimization, ERP, Transport Management System (TMS), supply chain planning, asset management, and much more.
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+
+Add this line to your application's Gemfile:
+
+```javascript
+npm install webfleetconnect
+```
 
 ## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+```javascript
+const webfleetconnect = require('webfleetconnect')
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+const wc = webfleetconnect.create()
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+const getShowObjectReportExtern = async () => {
+  try {
+    const response = await wc.showObjectReportExtern()
+    return response
+  } catch (error) {
+    return error
+  }
+}
+```
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+`WebfleetConnect.create` returns a new `Session` object which has the capabilities to request info from the WEBFLEET.connect API.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+The Webfleet credential are taken from the env variables `WEBFLEET_CONNECT_ACCOUNT`, `WEBFLEET_CONNECT_USERNAME`, `WEBFLEET_CONNECT_PASSWORD` and `WEBFLEET_CONNECT_APIKEY` (if you want to know more about env variables check [this link](https://www.honeybadger.io/blog/ruby-guide-environment-variables/)).
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+If your system needs to work with multiple accounts or you need to specify the credentials dynamically for some other reason, you can do it this way:
 
-## License
-For open source projects, say how it is licensed.
+```javascript
+const credentials = { account: 'companyName', username: 'dev', password: 'VLm5PpiZST6U', apikey: 'ZSksD88s-F7Uf' }
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+const wc = webfleetconnect.create(credentials)
+```
+
+When one of the methods is used, for example `showVehicleReportExtern`, it returns an object with the next properties:
+
+```javascript
+const getShowObjectReportExtern = async () => {
+  try {
+    const response = await wc.showObjectReportExtern()
+    return response
+  } catch (error) {
+    return error
+  }
+}
+
+response.data       # returns the data as an Array of objects
+response.statusCode # gets the status code of the request
+response.url        # gets the url to fetch the information from WEBFLEET.connect
+response.toString   # returns the data as a string
+
+# On get an error
+
+error.error # gets the status code of the request
+error.statusCode # gets the status code of the request
+error.url        # gets the url to fetch the information from WEBFLEET.connect
+```
+
+The methods available in this library are the same that are documented in the [WEBFLEET.connect docs page](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html).
+
+### Params
+
+In order to add params to a request is as easy as passing an object of options in the request like:
+
+```javascript
+const options = { filterstring: 'ECO', objectgroupname: 'Vehiculos', ungroupedonly: true }
+
+const response = await wc.showObjectReportExtern(options)
+```
+
+The `rangefromString` and `rangetoString` can accept `Time` objects:
+
+```javascript
+const addDays = (date, days) => {
+  const newDate = date.setDate(date.getDate() + days)
+  return newDate
+}
+
+const startDate = new Date()
+
+const endDate = addDays(startDate, 2)
+
+const options = { rangePattern: 'ud', rangefromString: startDate, rangetoString: endDate }
+
+const response = await wc.showObjectReportExtern(options)
+```
+
+The `rangePattern` can accept the values:
+- 'd0' -> `today`
+- 'd-1' -> `yesterday`
+- 'd-2' -> `two days ago`
+- 'd-3' -> `three days ago`
+- 'd-4' -> `four days ago`
+- 'd-5' -> `five days ago`
+- 'd-6' -> `six days ago`
+- 'w0' -> `current week`
+- 'w-1' -> `last week`
+- 'w-2' -> `two weeks_ago`
+- 'w-3' -> `three weeks ago`
+- 'wf0' -> `floating week, current day and previous seven days`
+- 'wf-1' -> `floating week, the seven calendar days before 'wf0'`
+- 'wf-2' -> `floating week, the seven calendar days before 'wf-1'`
+- 'wf-3' -> `floating week, the seven calendar days before 'wf-2'`
+- 'm0' —> `current month`
+- 'm-1' —> `last month`
+- 'm-2' —> `two months ago`
+- 'm-3' —> `three months ago`
+- 'ud' —> `user-defined range`
+
+Example:
+```javascript
+const response = await wc.showObjectReportExtern({ rangePattern: 'd-6' })
+```
+
+### Extra config
+
+The `Session` object works with the default configuration:
+
+`{ lang: 'en', outputformat: 'csv', useISO8601: false, useUTF8: false }`
+
+but you can change the default configuration when you create the object:
+
+```javascript
+const params = {
+  account:  'companyName',
+  username: 'dev',
+  password: 'VLm5PpiZST6U',
+  apikey:   'ZSksD88s-F7Uf',
+  lang: 'en',
+  outputformat: 'json',
+  useISO8601: false,
+  useUTF8: false
+}
+
+const wc = webfleetconnect.create(params)
+```
+
+### Methods list
+
+Mesage queues:
+
+- *Not implemented yet*
+
+Objects:
+
+- [showObjectReportExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showobjectreportextern.html)
+- [showVehicleReportExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showvehiclereportextern.html)
+- [showNearestVehicles](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/shownearestvehicles.html)
+- [showContracts](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showcontracts.html)
+- [updateVehicle](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updatevehicle.html)
+- [showObjectGroups](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showobjectgroups.html)
+- [showObjectGroupObjects](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showobjectgroupobjects.html)
+- [attachObjectToGroup](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/attachobjecttogroup.html)
+- [detachObjectFromGroup](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/detachobjectfromgroup.html)
+- [insertObjectGroup](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/insertobjectgroup.html)
+- [deleteObjectGroup](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/deleteobjectgroup.html)
+- [updateObjectGroup](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updateobjectgroup.html)
+- [switchOutput](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/switchoutput.html)
+- [showWakeupTimers](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showwakeuptimers.html)
+- [updateWakeupTimers](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updatewakeuptimers.html)
+- [getObjectFeatures](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getobjectfeatures.html)
+- [updateContractInfo](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updatecontractinfo.html)
+- [getObjectCanSignals](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getobjectcansignals.html)
+- [getObjectCanMalfunctions](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getobjectcanmalfunctions.html)
+- [getElectricVehicleData](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getelectricvehicledata.html)
+- [getActiveAssetCouplings](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getactiveassetcouplings.html)
+
+Orders:
+
+- [sendOrderExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/sendorderextern.html)
+- [sendDestinationOrderExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/senddestinationorderextern.html)
+- [updateOrderExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updateorderextern.html)
+- [updateDestinationOrderExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updatedestinationorderextern.html)
+- [insertDestinationOrderExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/insertdestinationorderextern.html)
+- [cancelOrderExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/cancelorderextern.html)
+- [assignOrderExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/assignorderextern.html)
+- [reassignOrderExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/reassignorderextern.html)
+- [deleteOrderExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/deleteorderextern.html)
+- [clearOrdersExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/clearordersextern.html)
+- [showOrderReportExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showorderreportextern.html)
+- [showOrderWaypoints](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showorderwaypoints.html)
+
+Messages:
+
+- [sendTextMessageExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/sendtextmessageextern.html)
+- [clearTextMessagesExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/cleartextmessagesextern.html)
+- [showMessages](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showmessages.html)
+- [sendBinaryMessage](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/sendbinarymessage.html)
+- [resetBinaryMessages](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/resetbinarymessages.html)
+- [clearBinaryMessages](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/clearbinarymessages.html)
+
+Drivers:
+
+- [showDriverReportExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showdriverreportextern.html)
+- [insertDriverExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/insertdriverextern.html)
+- [updateDriverExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updatedriverextern.html)
+- [deleteDriverExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/deletedriverextern.html)
+- [showOptiDriveIndicator](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showoptidriveindicator.html)
+- [showDriverGroups](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showdrivergroups.html)
+- [showDriverGroupDrivers](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showdrivergroupdrivers.html)
+- [attachDriverToGroup](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/attachdrivertogroup.html)
+- [detachDriverFromGroup](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/detachdriverfromgroup.html)
+- [insertDriverGroup](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/insertdrivergroup.html)
+- [deleteDriverGroup](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/deletedrivergroup.html)
+- [updateDriverGroup](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updatedrivergroup.html)
+- [attachDriverToVehicle](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/attachdrivertovehicle.html)
+- [detachDriverFromVehicle](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/detachdriverfromvehicle.html)
+- [getDriverRdtRules](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getdriverrdtrules.html)
+- [updateDriverRdtRules](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updatedriverrdtrules.html)
+
+Addresses:
+
+- [showAddressReportExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showaddressreportextern.html)
+- [showAddressGroupReportExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showaddressgroupreportextern.html)
+- [showAddressGroupAddressReportExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showaddressgroupaddressreporte.html)
+- [insertAddressExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/insertaddressextern.html)
+- [updateAddressExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updateaddressextern.html)
+- [deleteAddressExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/deleteaddressextern.html)
+- [attachAddressToGroupExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/attachaddresstogroupextern.html)
+- [detachAddressFromGroupExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/detachaddressfromgroupextern.html)
+- [insertAddressGroupExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/insertaddressgroupextern.html)
+- [deleteAddressGroupExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/deleteaddressgroupextern.html)
+
+Events:
+
+- [showEventReportExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showeventreportextern.html)
+- [acknowledgeEventExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/acknowledgeeventextern.html)
+- [resolveEventExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/resolveeventextern.html)
+- [getEventForwardConfigs](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/geteventforwardconfigs.html)
+- [getEventForwardConfigRecipients](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/geteventforwardconfigrecipient.html)
+- [insertEventForwardConfig](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/inserteventforwardconfig.html)
+- [updateEventForwardConfig](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updateeventforwardconfig.html)
+- [deleteEventForwardConfig](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/deleteeventforwardconfig.html)
+
+Trips and working times:
+
+- [showTripReportExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showtripreportextern.html)
+- [showTripSummaryReportExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showtripsummaryreportextern.html)
+- [showTracks](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showtracks.html)
+- [updateLogbook](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updatelogbook.html)
+- [showLogbook](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showlogbook.html)
+- [showLogbook_history](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showlogbookhistory.html)
+- [updateLogbookMode](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updatelogbookmode.html)
+- [updateLogbookDriver](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updatelogbookdriver.html)
+- [showWorkingTimes](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showworkingtimes.html)
+- [showStandStills](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showstandstills.html)
+- [showIdleExceptions](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showidleexceptions.html)
+- [getObjectKpis](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getobjectkpis.html)
+- [getDriverKpis](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getdriverkpis.html)
+- [getRemainingDrivingTimesEu](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getremainingdrivingtimeseu.html)
+
+Miscellaneous reports:
+
+- [getChargerConnections](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getchargerconnections.html)
+- [showIoReportExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showioreportextern.html)
+- [showAccelerationEvents](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showaccelerationevents.html)
+- [showSpeedingEvents](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showspeedingevents.html)
+- [showDigitalInputStateMileage](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showdigitalinputstatemileage.html)
+- [getChargerConnections](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getchargerconnections.html)
+
+Geocoding and routing:
+
+- [geocodeAddress](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/geocodeaddress.html)
+- [calcRouteSimpleExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/calcroutesimpleextern.html)
+
+Configuration and security:
+
+- *Not implemented yet*
+
+User management:
+
+- *Not implemented yet*
+
+Vehicle maintenance:
+
+- *Not implemented yet*
+
+Reporting:
+
+- *Not implemented yet*
+
+Areas:
+
+- *Not implemented yet*
+
+LINK.connect:
+
+- *Not implemented yet*
+
+Plugins:
+
+- *Not implemented yet*
