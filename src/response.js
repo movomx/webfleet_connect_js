@@ -5,7 +5,7 @@ const handleResponse = response => ({
   data:       handleData(response.data),
   url:        response.config.url,
   statusCode: response.status,
-  toString:  () => convert(response.data)
+  toString:   () => convert(response.data)
 })
 
 module.exports = handleResponse

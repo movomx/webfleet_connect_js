@@ -1,7 +1,7 @@
 const hasConfigs = obj => Object.entries(obj).length
 
 const handleObject = obj => {
-  if (!hasConfigs(obj)) return ''
+  if (!obj) return ''
   const keys   = Object.keys(obj)
   const values = Object.values(obj)
   return keys.map((k, i) => `${k}=${values[i]}&`).join('')

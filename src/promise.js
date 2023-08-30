@@ -1,16 +1,23 @@
-const generateErrorText = require('./helpers/error')
-const hasError = require('./helpers/errorValidator')
+const handleResponse = require('./response')
+const { hasCsvError, buildCsvError } = require('./csvHandler')
+const { hasJsonError, buildJsonError } = require('./jsonHandler')
 
-const buildError = response => ({
-  url: response.url,
-  statusCode: response.statusCode,
-  error: generateErrorText(response.data)
-})
+const isCsv = response => (typeof response.data === 'string')
+
+const hasError = response => {
+  if (isCsv(response)) return hasCsvError(response)
+  return hasJsonError(response)
+}
+
+const buildError = response => {
+  if (isCsv(response)) return buildCsvError(response)
+  return buildJsonError(response)
+}
 
 const generatePromise = response => (
   new Promise((resolve, reject) => {
     if (hasError(response)) reject(buildError(response))
-    resolve(response)
+    resolve(handleResponse(response))
   })
 )
 

@@ -1,27 +1,35 @@
 const isArray = require('./validateArray')
 
-const getLines = data => data.trim().split('\r\n')
+const toLines = data => data.trim().split('\r\n')
 
 const getHeaders = data => (
   data.split(';').map(header => header.replace(/"/g, ''))
 )
 
-const removeHeaders = data => data.slice(1, data.length)
+const split = csvText => {
+  const lines = toLines(csvText)
+  return [lines[0], lines.slice(1)]
+}
+
+const formatRow = (row, headers) => {
+  const values = row.split(';')
+  const object = {}
+  headers.forEach((h, i) => {
+    const value = values[i].replace(/"/g, '')
+    object[h] = value
+  })
+  return object
+}
+
+const handleCsv = data => {
+  const [head, rows] = split(data)
+  const headers = getHeaders(head)
+  return rows.map(r => formatRow(r, headers))
+}
 
 const handleData = data => {
   if (isArray(data)) return data
-  const lines = getLines(data)
-  const headers = getHeaders(lines[0])
-  const rows = removeHeaders(lines)
-  return rows.map(r => {
-    const values = r.split(';')
-    const object = {}
-    headers.forEach((h, hi) => {
-      const value =  values[hi].replace(/"/g, '')
-      object[h] = value
-    })
-    return object
-  })
+  return handleCsv(data)
 }
 
 module.exports = handleData

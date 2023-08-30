@@ -16,7 +16,7 @@ const formatError = error => {
 }
 
 const generateErrorText = error => (
-  `${formatError(error)} \n\n Check ${SITE}${ENDPOINT} for more details.`
+  `${error} \n\n Check ${SITE}${ENDPOINT} for more details.`
 )
 
 module.exports = generateErrorText
