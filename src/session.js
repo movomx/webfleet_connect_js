@@ -1,4 +1,3 @@
-require('dotenv').config()
 const addActions = require('./actions/addActions')
 
 class Session {
