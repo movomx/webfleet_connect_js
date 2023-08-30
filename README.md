@@ -52,7 +52,7 @@ response.toString() // returns the data as a string
 
 // On get an error
 
-error.error      // gets the status code of the request
+error.error      // gets the error returned by WEBFLEET.connect
 error.statusCode // gets the status code of the request
 error.url        // gets the url to fetch the information from WEBFLEET.connect
 ```
@@ -83,13 +83,11 @@ const params = {
   username: 'dev',
   password: 'VLm5PpiZST6U',
   apikey:   'ZSksD88s-F7Uf',
-  lang: 'en',
-  outputformat: 'json',
-  useISO8601: false,
-  useUTF8: false
+  lang: 'de',
+  outputformat: 'json'
 }
 
-const wc = webfleetconnect.create(params)
+const webfleetConnect = WebfleetConnect.create(params)
 ```
 
 ### Methods list
