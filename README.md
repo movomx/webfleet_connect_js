@@ -1,4 +1,4 @@
-# webfleetconnect
+# WebfleetConnect
 
 ![Webfleet logo](https://login.webfleet.com/auth/resources/7k8j7/login/product_webfleet/img/logo.svg)
 
@@ -10,8 +10,6 @@ The WEBFLEET.connect API connects software appli­ca­tions with the Webfleet fl
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
 ```javascript
 npm install webfleetconnect
 ```
@@ -19,54 +17,44 @@ npm install webfleetconnect
 ## Usage
 
 ```javascript
-const webfleetconnect = require('webfleetconnect')
+const WebfleetConnect = require('webfleetconnect')
 
-const wc = webfleetconnect.create()
+const webfleetConnect = WebfleetConnect.create()
 
-const getShowObjectReportExtern = async () => {
-  try {
-    const response = await wc.showObjectReportExtern()
-    return response
-  } catch (error) {
-    return error
-  }
-}
+webfleetConnect.showObjectReportExtern()
+  .then(response => console.log(response))
+  .catch(error => console.error(error))
 ```
 
-`WebfleetConnect.create` returns a new `Session` object which has the capabilities to request info from the WEBFLEET.connect API.
+`WebfleetConnect.create()` returns a new `Session` object which has the capabilities to request info from the WEBFLEET.connect API.
 
-The Webfleet credential are taken from the env variables `WEBFLEET_CONNECT_ACCOUNT`, `WEBFLEET_CONNECT_USERNAME`, `WEBFLEET_CONNECT_PASSWORD` and `WEBFLEET_CONNECT_APIKEY` (if you want to know more about env variables check [this link](https://www.honeybadger.io/blog/ruby-guide-environment-variables/)).
+The Webfleet credential are taken from the env variables `WEBFLEET_CONNECT_ACCOUNT`, `WEBFLEET_CONNECT_USERNAME`, `WEBFLEET_CONNECT_PASSWORD` and `WEBFLEET_CONNECT_APIKEY` (if you want to know more about env variables check [this link](https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786)).
 
 If your system needs to work with multiple accounts or you need to specify the credentials dynamically for some other reason, you can do it this way:
 
 ```javascript
 const credentials = { account: 'companyName', username: 'dev', password: 'VLm5PpiZST6U', apikey: 'ZSksD88s-F7Uf' }
 
-const wc = webfleetconnect.create(credentials)
+const webfleetConnect = WebfleetConnect.create(credentials)
 ```
 
 When one of the methods is used, for example `showVehicleReportExtern`, it returns an object with the next properties:
 
 ```javascript
-const getShowObjectReportExtern = async () => {
-  try {
-    const response = await wc.showObjectReportExtern()
-    return response
-  } catch (error) {
-    return error
-  }
-}
+webfleetConnect.showObjectReportExtern()
+  .then(response => console.log(response))
+  .catch(error => console.error(error))
 
-response.data       # returns the data as an Array of objects
-response.statusCode # gets the status code of the request
-response.url        # gets the url to fetch the information from WEBFLEET.connect
-response.toString   # returns the data as a string
+response.data       // gets the data as an Array of objects
+response.statusCode // gets the status code of the request
+response.url        // gets the url to fetch the information from WEBFLEET.connect
+response.toString() // returns the data as a string
 
-# On get an error
+// On get an error
 
-error.error # gets the status code of the request
-error.statusCode # gets the status code of the request
-error.url        # gets the url to fetch the information from WEBFLEET.connect
+error.error      // gets the status code of the request
+error.statusCode // gets the status code of the request
+error.url        // gets the url to fetch the information from WEBFLEET.connect
 ```
 
 The methods available in this library are the same that are documented in the [WEBFLEET.connect docs page](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html).
@@ -78,51 +66,7 @@ In order to add params to a request is as easy as passing an object of options i
 ```javascript
 const options = { filterstring: 'ECO', objectgroupname: 'Vehiculos', ungroupedonly: true }
 
-const response = await wc.showObjectReportExtern(options)
-```
-
-The `rangefromString` and `rangetoString` can accept `Time` objects:
-
-```javascript
-const addDays = (date, days) => {
-  const newDate = date.setDate(date.getDate() + days)
-  return newDate
-}
-
-const startDate = new Date()
-
-const endDate = addDays(startDate, 2)
-
-const options = { rangePattern: 'ud', rangefromString: startDate, rangetoString: endDate }
-
-const response = await wc.showObjectReportExtern(options)
-```
-
-The `rangePattern` can accept the values:
-- 'd0' -> `today`
-- 'd-1' -> `yesterday`
-- 'd-2' -> `two days ago`
-- 'd-3' -> `three days ago`
-- 'd-4' -> `four days ago`
-- 'd-5' -> `five days ago`
-- 'd-6' -> `six days ago`
-- 'w0' -> `current week`
-- 'w-1' -> `last week`
-- 'w-2' -> `two weeks_ago`
-- 'w-3' -> `three weeks ago`
-- 'wf0' -> `floating week, current day and previous seven days`
-- 'wf-1' -> `floating week, the seven calendar days before 'wf0'`
-- 'wf-2' -> `floating week, the seven calendar days before 'wf-1'`
-- 'wf-3' -> `floating week, the seven calendar days before 'wf-2'`
-- 'm0' —> `current month`
-- 'm-1' —> `last month`
-- 'm-2' —> `two months ago`
-- 'm-3' —> `three months ago`
-- 'ud' —> `user-defined range`
-
-Example:
-```javascript
-const response = await wc.showObjectReportExtern({ rangePattern: 'd-6' })
+const response = await webfleetConnect.showObjectReportExtern(options)
 ```
 
 ### Extra config
