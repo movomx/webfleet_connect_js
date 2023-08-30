@@ -6,7 +6,13 @@
 
 Library to consume WEBFLEET.connect API.
 
+[![npm version](https://badge.fury.io/js/webfleetconnect.svg)](https://badge.fury.io/js/webfleetconnect)
+
 The WEBFLEET.connect API connects software appli­ca­tions with the Webfleet fleet management solution. Via WEBFLEET.connect you can enhance the value of all types of business solutions, including routing and scheduling optimization, ERP, Transport Management System (TMS), supply chain planning, asset management, and much more.
+
+Check also the version for:
+
+- [ruby](https://github.com/movomx/webfleet_connect)
 
 ## Installation
 

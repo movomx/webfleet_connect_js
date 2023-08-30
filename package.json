@@ -1,14 +1,14 @@
 {
   "name": "webfleetconnect",
-  "version": "1.0.0",
-  "description": "library to query webfleet.connect api in a simple way",
+  "version": "1.0.1",
+  "description": "Library to query webfleet.connect api in a simple way",
   "main": "./src/webfleetconnect.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/JesusPimentel/webfleetconnectjs.git"
+    "url": "git@github.com:movomx/webfleet_connect_js.git"
   },
   "keywords": [],
   "author": "JesusPimentel",
