@@ -1,6 +1,6 @@
 # WebfleetConnect
 
-![Webfleet logo](https://login.webfleet.com/auth/resources/7k8j7/login/product_webfleet/img/logo.svg)
+![Webfleet logo](./webfleet_logo.svg)
 
 #
 
