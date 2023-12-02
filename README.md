@@ -100,7 +100,10 @@ const webfleetConnect = WebfleetConnect.create(params)
 
 Mesage queues:
 
-- *Not implemented yet*
+- [createQueueExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/createqueueextern.html)
+- [deleteQueueExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/deletequeueextern.html)
+- [popQueueMessagesExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/popqueuemessagesextern.html)
+- [ackQueueMessagesExtern](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/ackqueuemessagesextern.html)
 
 Objects:
 
@@ -226,28 +229,69 @@ Geocoding and routing:
 
 Configuration and security:
 
-- *Not implemented yet*
+- [showSettings](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showsettings.html)
+- [createSession](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/createsession.html)
+- [terminateSession](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/terminatesession.html)
+- [showAccountOrderStates](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showaccountorderstates.html)
+- [updateAccountOrderState](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updateaccountorderstate.html)
+- [showAccountOrderAutomations](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showaccountorderautomations.html)
+- [updateAccountOrderAutomation](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updateaccountorderautomation.html)
+- [getAccountStatusMessages](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getaccountstatusmessages.html)
+- [getStatusMessages](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getstatusmessages.html)
+- [setVehicleConfig](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/setvehicleconfig.html)
+- [getVehicleConfig](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getvehicleconfig.html)
+- [setStatusMessages](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/setstatusmessages.html)
+- [setAccountStatusMessages](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/setaccountstatusmessages.html)
 
 User management:
 
-- *Not implemented yet*
+- [showUsers](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showusers.html)
+- [changePassword](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/changepassword.html)
 
 Vehicle maintenance:
 
-- *Not implemented yet*
+- [insertMaintenanceSchedule](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/insertmaintenanceschedule.html)
+- [updateMaintenanceSchedule](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updatemaintenanceschedule.html)
+- [deleteMaintenanceSchedule](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/deletemaintenanceschedule.html)
+- [showMaintenanceSchedules](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showmaintenanceschedules.html)
+- [showMaintenanceTasks](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/showmaintenancetasks.html)
+- [resolveMaintenanceTask](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/resolvemaintenancetask.html)
 
 Reporting:
 
-- *Not implemented yet*
+- [getArchivedReportList](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getarchivedreportlist.html)
+- [getArchivedReport](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getarchivedreport.html)
+- [deleteArchivedReport](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/deletearchivedreport.html)
+- [getReportList](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getreportlist.html)
+- [createReport](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/createreport.html)
+- [sendReportViaMail](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/sendreportviamail.html)
 
 Areas:
 
-- *Not implemented yet*
+- [getAreas](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getareas.html)
+- [insertArea](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/insertarea.html)
+- [deleteArea](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/deletearea.html)
+- [updateArea](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/updatearea.html)
+- [getAreaPoints](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getareapoints.html)
+- [getAreaAssignments](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getareaassignments.html)
+- [insertAreaAssignment](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/insertareaassignment.html)
+- [deleteAreaAssignment](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/deleteareaassignment.html)
+- [getAreaSchedules](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getareaschedules.html)
+- [insertAreaSchedule](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/insertareaschedule.html)
+- [deleteAreaSchedule](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/deleteareaschedule.html)
 
 LINK.connect:
 
-- *Not implemented yet*
+- [sendAuxDeviceData](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/sendauxdevicedata.html)
+- [getLocalAuxDeviceConfig](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getlocalauxdeviceconfig.html)
+- [configureLocalAuxDevice](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/configurelocalauxdevice.html)
+- [getRemoteAuxDeviceConfig](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/getremoteauxdeviceconfig.html)
+- [configureRemoteAuxDevice](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/configureremoteauxdevice.html)
+- [removeRemoteAuxDeviceConfig](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/removeremoteauxdeviceconfig.html)
+- [clearAuxDeviceDataQueue](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/clearauxdevicedataqueue.html)
+- [resetAuxDeviceData](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/resetauxdevicedata.html)
 
 Plugins:
 
-- *Not implemented yet*
+- [insertExternalEvent](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/insertexternalevent.html)
+- [setExternalObjectData](https://www.webfleet.com/static/help/webfleet-connect/en_gb/index.html#data/setexternalobjectdata.html)

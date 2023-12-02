@@ -1,6 +1,6 @@
 {
   "name": "webfleetconnect",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Library to query webfleet.connect api in a simple way",
   "main": "./src/webfleetconnect.js",
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "keywords": [],
   "author": "JesusPimentel",
-  "license": "GPL-3.0",
+  "license": "MIT License",
   "bugs": {
     "url": "https://github.com/movomx/webfleet_connect_js/issues"
   },
