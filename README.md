@@ -13,6 +13,7 @@ The WEBFLEET.connect API connects software appli­ca­tions with the Webfleet fl
 Check also the version for:
 
 - [ruby](https://github.com/movomx/webfleet_connect)
+- [python](https://github.com/movomx/webfleet_connect_python)
 
 ## Installation
 
